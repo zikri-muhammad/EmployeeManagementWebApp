@@ -1,0 +1,94 @@
+@page
+@model EmployeeManagementWebApp.Pages.Employees.IndexModel
+@{
+   ViewData["Title"] = "Employees";
+}
+
+<h1>Form List Data Karyawan</h1>
+
+<form method="get">
+   <div class="form-group row">
+      <label for="searchNama" class="col-sm-1 col-form-label">Nama</label>
+      <div class="col-sm-3">
+         <input type="text" class="form-control" id="searchNama" name="SearchNama" placeholder="Nama"
+            value="@Model.SearchNama">
+      </div>
+      <label for="SearchDepartemen" class="col-sm-1 col-form-label">Departemen</label>
+      <div class="col-sm-3">
+         <select class="form-control" id="SearchDepartemen" name="SearchDepartemen">
+            <option value="">ComboBox</option>
+            <option value="IT" )>IT</option>
+            <option value="Sales" )>Sales</option>
+            <option value="HR" )>HR</option>
+         </select>
+      </div>
+   </div>
+   <div class="form-group row mt-3">
+      <label for="searchJenisKelamin" class="col-sm-1 col-form-label">Jenis Kelamin</label>
+      <div class="col-sm-3">
+         <select class="form-control" id="searchJenisKelamin" name="SearchJenisKelamin">
+            <option value="">ComboBox</option>
+            <option value="Male" )>Male</option>
+            <option value="Female" )>Female</option>
+         </select>
+      </div>
+      <label for="searchJabatan" class="col-sm-1 col-form-label">Jabatan</label>
+      <div class="col-sm-3">
+         <select class="form-control" id="searchJabatan" name="SearchJabatan">
+            <option value="">ComboBox</option>
+            <option value="Executive" )>Executive</option>
+            <option value="Manager" )>Manager</option>
+         </select>
+      </div>
+      <div class="col-sm-2">
+         <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+   </div>
+</form>
+
+<div class="mt-4">
+   <button class="btn btn-primary" onclick="location.href='@Url.Page("./Create")'">Add</button>
+</div>
+
+@if (Model.Employees != null && Model.Employees.Items.Any())
+{
+   <table class="table mt-4">
+   <thead>
+      <tr>
+         <th>NIK</th>
+         <th>Nama</th>
+         <th>Alamat</th>
+         <th>Tanggal Lahir</th>
+         <th>Jenis Kelamin</th>
+         <th>Departemen</th>
+         <th>Jabatan</th>
+         <th>Action</th>
+      </tr>
+   </thead>
+   <tbody>
+      @foreach (var employee in Model.Employees.Items)
+         {
+            <tr>
+               <td>@employee.Nik</td>
+               <td>@employee.Nama</td>
+               <td>@employee.Alamat</td>
+               <td>@employee.TanggalLahir.ToString("dd-MM-yyyy")</td>
+               <td>@employee.JenisKelamin</td>
+               <td>@employee.Departemen</td>
+               <td>@employee.Jabatan</td>
+               <td>
+                  <a asp-page="./Edit" asp-route-id="@employee.Id" class="btn btn-link">Edit</a> |
+                  <form method="post" asp-page-handler="Delete" asp-route-id="@employee.Id" class="d-inline">
+                     <button type="submit" class="btn btn-link"
+                        onclick="return confirm('Are you sure you want to delete this employee?');">Delete</button>
+                  </form>
+               </td>
+            </tr>
+         }
+      </tbody>
+   </table>
+}
+else
+{
+   <p>No employees found.</p>
+}

@@ -1,0 +1,58 @@
+@page
+@using EmployeeManagementWebApp.Models
+@model EmployeeManagementWebApp.Pages.Employees.CreateModel
+
+<h2>Create Employee</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Employee.Nik"></label>
+        <input asp-for="Employee.Nik" class="form-control" />
+        <span asp-validation-for="Employee.Nik" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Nama"></label>
+        <input asp-for="Employee.Nama" class="form-control" />
+        <span asp-validation-for="Employee.Nama" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Alamat"></label>
+        <input asp-for="Employee.Alamat" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.TanggalLahir"></label>
+        <input asp-for="Employee.TanggalLahir" class="form-control" type="date" />
+        <span asp-validation-for="Employee.TanggalLahir" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.JenisKelamin"></label>
+        <select asp-for="Employee.JenisKelamin" class="form-control">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <span asp-validation-for="Employee.JenisKelamin" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Departemen"></label>
+        <select asp-for="Employee.Departemen" class="form-control">
+            @foreach (var departemen in Enum.GetValues(typeof(Departemen)))
+            {
+                <option value="@departemen">@departemen</option>
+            }
+        </select>
+        <span asp-validation-for="Employee.Departemen" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Jabatan"></label>
+        <select asp-for="Employee.Jabatan" class="form-control">
+            @foreach (var jabatan in Enum.GetValues(typeof(Jabatan)))
+            {
+                <option value="@jabatan">@jabatan</option>
+            }
+        </select>
+        <span asp-validation-for="Employee.Jabatan" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<partial name="_ValidationScriptsPartial" />

@@ -1,0 +1,68 @@
+@page "{id:int}"
+@using EmployeeManagementWebApp.Models
+@model EmployeeManagementWebApp.Pages.Employees.EditModel
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<h1>Edit Employee</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Employee.Id" />
+
+    <div class="form-group">
+        <label asp-for="Employee.Nik" class="control-label"></label>
+        <input asp-for="Employee.Nik" class="form-control" />
+        <span asp-validation-for="Employee.Nik" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Nama" class="control-label"></label>
+        <input asp-for="Employee.Nama" class="form-control" />
+        <span asp-validation-for="Employee.Nama" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Alamat" class="control-label"></label>
+        <input asp-for="Employee.Alamat" class="form-control" />
+        <span asp-validation-for="Employee.Alamat" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.TanggalLahir" class="control-label"></label>
+        <input asp-for="Employee.TanggalLahir" type="date" class="form-control" />
+        <span asp-validation-for="Employee.TanggalLahir" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.JenisKelamin" class="control-label"></label>
+        <select asp-for="Employee.JenisKelamin" class="form-control">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <span asp-validation-for="Employee.JenisKelamin" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Departemen" class="control-label"></label>
+        <select asp-for="Employee.Departemen" class="form-control">
+            @foreach (var departemen in Enum.GetValues(typeof(Departemen)))
+            {
+                <option value="@departemen">@departemen</option>
+            }
+        </select>
+        <span asp-validation-for="Employee.Departemen" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Jabatan" class="control-label"></label>
+        <select asp-for="Employee.Jabatan" class="form-control">
+            @foreach (var jabatan in Enum.GetValues(typeof(Jabatan)))
+            {
+                <option value="@jabatan">@jabatan</option>
+            }
+        </select>
+        <span asp-validation-for="Employee.Jabatan" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
