@@ -25,16 +25,7 @@ cd EmployeeManagementWebApp
 
 ```
 
-### 2. Configure the Web Application
-Open the appsettings.json file in the EmployeeManagementWebApp project and update the PostgreSQL connection string:
-
-```bash
-"ConnectionStrings": {
-  "DefaultConnection": "Host=localhost;Port=5432;Database=EmployeeManagement;Username=youruser;Password=yourpassword"
-}
-```
-
-### 3. Run Application
+### 2. Run Application
 
 ```bash
 cd EmployeeManagementWebApp
